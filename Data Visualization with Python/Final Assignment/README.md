@@ -29,4 +29,4 @@ NOTE: Year range is between 2005 and 2020.
        -Monthly average late aircraft delay by reporting airline for the given year.
 
 ![image 1](./assets/1.png)  
-![image 2](./assets/2.pnd)
+![image 2](./assets/2.png)
