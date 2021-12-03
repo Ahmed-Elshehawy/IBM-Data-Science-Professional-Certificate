@@ -24,18 +24,19 @@ airline_data =  pd.read_csv('airline_data.csv')
 # List of years 
 year_list = [i for i in range(2005, 2021, 1)]
 
-"""Compute graph data for creating yearly airline performance report 
 
-Function that takes airline data as input and create 5 dataframes based on the grouping condition to be used for plottling charts and grphs.
-
-Argument:
-     
-    df: Filtered dataframe
-    
-Returns:
-   Dataframes to create graph. 
-"""
 def compute_data_choice_1(df):
+     """Compute graph data for creating yearly airline performance report 
+
+     Function that takes airline data as input and create 5 dataframes based on the grouping condition to be used for plottling charts and grphs.
+
+     Argument:
+
+         df: Filtered dataframe
+
+     Returns:
+        Dataframes to create graph. 
+     """
     # Cancellation Category Count
     bar_data = df.groupby(['Month','CancellationCode'])['Flights'].sum().reset_index()
     # Average flight time by reporting airline
@@ -49,17 +50,17 @@ def compute_data_choice_1(df):
     return bar_data, line_data, div_data, map_data, tree_data
 
 
-"""Compute graph data for creating yearly airline delay report
-
-This function takes in airline data and selected year as an input and performs computation for creating charts and plots.
-
-Arguments:
-    df: Input airline data.
-    
-Returns:
-    Computed average dataframes for carrier delay, weather delay, NAS delay, security delay, and late aircraft delay.
-"""
 def compute_data_choice_2(df):
+     """Compute graph data for creating yearly airline delay report
+
+     This function takes in airline data and selected year as an input and performs computation for creating charts and plots.
+
+     Arguments:
+         df: Input airline data.
+
+     Returns:
+         Computed average dataframes for carrier delay, weather delay, NAS delay, security delay, and late aircraft delay.
+     """
     # Compute delay averages
     avg_car = df.groupby(['Month','Reporting_Airline'])['CarrierDelay'].mean().reset_index()
     avg_weather = df.groupby(['Month','Reporting_Airline'])['WeatherDelay'].mean().reset_index()
@@ -130,6 +131,7 @@ app.layout = html.Div(children=[
                                 ], style={'display': 'flex'})
                                 ])
 
+
 # Callback function definition
 # TODO4: Add 5 ouput components
 out = [Output(component_id='plot'+str(i), component_property='children') for i in range(1, 6)]
@@ -141,6 +143,7 @@ out = [Output(component_id='plot'+str(i), component_property='children') for i i
                 State("plot3", "children"), State("plot4", "children"),
                 State("plot5", "children")
                ])
+
 # Add computation to callback function and return graph
 def get_graph(chart, year, children1, children2, c3, c4, c5):
       
